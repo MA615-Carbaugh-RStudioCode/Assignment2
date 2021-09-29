@@ -10,7 +10,7 @@ co2_clean <- co2_clean %>%
     Year = as.integer(gsub("X", "", Year)),
   )
 
-rename(co2_clean, Country = ï..country)
+co2_clean <- rename(co2_clean, Country = ï..country)
 
 #-------------------------
 
@@ -25,4 +25,12 @@ life_clean <- life_clean %>%
     Year = as.integer(gsub("X", "", Year)),
   )
 
-rename(life_clean, Country = ï..country)
+life_clean <- rename(life_clean, Country = ï..country)
+
+life_clean
+
+
+#--------------------------
+
+joined <- inner_join(co2_clean, life_clean, by = c("Country", "Year"))
+joined
