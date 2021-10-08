@@ -1,0 +1,28 @@
+---
+title: "CO2 Emissions vs. Life Expectancy - Gapminder Data"
+author: "Jack Carbaugh"
+date: "10/6/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Introduction
+
+Using the Gapminder data, I was curious to see the relationship between country CO2 emissions and life expectancy. To get a standardized result, I utilized the data sets for CO2 emissions measured in tonnes per person and life expectancy in years.  
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
