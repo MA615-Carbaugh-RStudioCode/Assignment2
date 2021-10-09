@@ -1,8 +1,9 @@
 library(tidyverse)
 
 co2 <- read_csv("co2_emissions_tonnes_per_person.csv")
-co2 <- type.convert(co2, na.strings = c("", "60Âµ", "70Âµ", "80Âµ", "90Âµ"))
-
+co2 <- type.convert(co2, na.strings = c("", "60Âµ", "70Âµ", "80Âµ", "90Âµ"), as.is = TRUE)
+co2 <- co2 %>% 
+  mutate('1829' = as.double('1829'), '1830' = as.double('1830'), '1831' = as.double('1831'), '1832' = as.double('1832'))
 co2_clean <- co2 %>%
   pivot_longer(-country, names_to = "year", values_to = "Emissions", values_drop_na = TRUE)
 

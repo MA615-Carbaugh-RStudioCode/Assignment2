@@ -11,18 +11,22 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Introduction
 
-Using the Gapminder data, I was curious to see the relationship between country CO2 emissions and life expectancy. To get a standardized result, I utilized the data sets for CO2 emissions measured in tonnes per person and life expectancy in years.  
+Using the Gapminder data, I was curious to see the relationship between country CO2 emissions and life expectancy. To get a standardized result, I utilized the data sets for CO2 emissions measured in tonnes per person and life expectancy in years.  With some initial observation, I noticed that over time, life expectancy usually steadily increases for most countries, though this trend is weaker earlier in the data set. The emissions trends were much easier to see on the log scale; this showed that for the early data, most countries had a rapid increase in emissions, while later on emissions mostly plateaued. To investigate this, I split the data into subsets based on whether the recording was before of after 1920. 1920 was chosen as this was around the point where life expectancy data was still low and cO2 emissions began stabilizing for developed nations.
 
-```{r cars}
-summary(cars)
+
+## Data Visualizations
+
+```{r, echo=FALSE, message= FALSE}
+source(file = "wrangling_code.R", echo = FALSE)
+source(file = "visualization_function.R", echo = FALSE)
+
+build_visual(filter(joined, year <1920))
+build_visual(filter(joined, year >=1920))
 ```
 
-## Including Plots
+Both visualizations show log(Emissions) against life expectancy. The Colors represent different countries, and assist in showing the trends amongst some. The top visualization is the subset of data points before 1920 and the bottom is the subset of those on and after 1920. While both show a positive trend, it is less obvious in the top graph. Particularly, the lower end of the emissions spectrum shows little movement in life expectancy even with the increase in emissions. The bottom graph, on the other hand, has a stable positive trend throughout.
 
-You can also embed plots, for example:
+What these graphs seem to suggest is that life expectancy in countries improves with increased co2 emissions. Clearly though, this is not a direct causation, as co2 emissions in other studies has been shown to lower the health of people overall. Instead, this is likely occurring due to the development and modernization of countries. When many undeveloped countries start out, they will have lower life expectancy and carbon emissions, due to lack of production. However, upon developing and industrializing, emissions must increase, and with better development comes better medical care to increase life expectancy. Thus, these two factor appear to increase at the same time due to the link to country development.
 
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
+However, from our subsets, it seems that this may be changing a bit. Before 1920, increasing carbon emissions still kept the life expectancy low, likely because good medical practices did yet exist to help out. Now, though, as these practices are more widely available, emissions and life expectancy will equally improve as development occurs. 
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
